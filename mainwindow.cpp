@@ -403,7 +403,7 @@ void MainWindow::InitCountMessage()
     timer->start(10000); // 每隔10秒自动保存一次
 }
 
-
+//多开窗口
 void MainWindow::on_action_new_window_triggered()
 {
     QString path("Lab2.exe");

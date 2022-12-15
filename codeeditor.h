@@ -3,6 +3,37 @@
 
 #include <QObject>
 #include <QPlainTextEdit>
+#include <QSyntaxHighlighter>
+#include <QRegularExpression>
+
+class Highlighter : public QSyntaxHighlighter
+{
+    Q_OBJECT
+
+public:
+    Highlighter(QTextDocument *parent = 0);
+
+protected:
+    void highlightBlock(const QString &text) override;
+
+private:
+    struct HighlightingRule
+    {
+        QRegularExpression pattern;
+        QTextCharFormat format;
+    };
+    QVector<HighlightingRule> highlightingRules;
+
+    QRegularExpression commentStartExpression;
+    QRegularExpression commentEndExpression;
+
+    QTextCharFormat keywordFormat;
+    QTextCharFormat classFormat;
+    QTextCharFormat singleLineCommentFormat;
+    QTextCharFormat multiLineCommentFormat;
+    QTextCharFormat quotationFormat;
+    QTextCharFormat functionFormat;
+};
 
 class CodeEditor : public QPlainTextEdit
 {
@@ -27,6 +58,7 @@ public slots:
 
 private:
     QWidget *lineNumberArea;
+    Highlighter *highlighter;
     bool hide_flag;
 };
 
