@@ -10,6 +10,7 @@
 #include <QColorDialog>
 #include <QFontDialog>
 #include <QDebug>
+#include <QProcess>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -400,5 +401,16 @@ void MainWindow::InitCountMessage()
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(saveOnTime())); // 自动执行saveOnTime
     timer->start(10000); // 每隔10秒自动保存一次
+}
+
+
+void MainWindow::on_action_new_window_triggered()
+{
+    QString path("Lab2.exe");
+
+    QProcess *process = new QProcess(this);
+    qDebug() << "new Process";
+
+    process->startDetached(path);
 }
 

@@ -73,6 +73,8 @@ private slots:
 
     void saveOnTime();
 
+    void on_action_new_window_triggered();
+
 private:
     Ui::MainWindow *ui;
 

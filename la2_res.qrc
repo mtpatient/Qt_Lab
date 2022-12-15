@@ -21,5 +21,6 @@
         <file>img/自动换行.png</file>
         <file>img/字体大小.png</file>
         <file>img/字体颜色.png</file>
+        <file>img/new_Window.png</file>
     </qresource>
 </RCC>

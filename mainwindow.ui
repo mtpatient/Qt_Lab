@@ -57,6 +57,7 @@
     <addaction name="action_Open"/>
     <addaction name="action_Save"/>
     <addaction name="action_A_Save"/>
+    <addaction name="action_new_window"/>
     <addaction name="separator"/>
     <addaction name="action_Exit"/>
    </widget>
@@ -121,6 +122,7 @@
    <addaction name="action_Open"/>
    <addaction name="action_Save"/>
    <addaction name="action_A_Save"/>
+   <addaction name="action_new_window"/>
    <addaction name="separator"/>
    <addaction name="action_U"/>
    <addaction name="action_Recover"/>
@@ -369,6 +371,15 @@
    </property>
    <property name="text">
     <string>关于(&amp;A)</string>
+   </property>
+  </action>
+  <action name="action_new_window">
+   <property name="icon">
+    <iconset resource="la2_res.qrc">
+     <normaloff>:/img/new_Window.png</normaloff>:/img/new_Window.png</iconset>
+   </property>
+   <property name="text">
+    <string>新窗口</string>
    </property>
   </action>
  </widget>
