@@ -4,7 +4,7 @@
 #include <QTimer>
 
 /**
- * @brief CodeEditor::CodeEditor 实现显示行号及当前行高亮
+ * @brief CodeEditor::CodeEditor 实现显示行号及当前行高亮、语法高亮
  * @param parent
  */
 CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
@@ -138,7 +138,8 @@ Highlighter::Highlighter(QTextDocument *parent)
     keywordFormat.setForeground(Qt::darkBlue);
     keywordFormat.setFontWeight(QFont::Bold);
     QStringList keywordPatterns;
-    keywordPatterns << "\\bchar\\b" << "\\bclass\\b" << "\\bconst\\b"
+    keywordPatterns //C++ 关键字
+                    << "\\bchar\\b" << "\\bclass\\b" << "\\bconst\\b"
                     << "\\bdouble\\b" << "\\benum\\b" << "\\bexplicit\\b"
                     << "\\bfriend\\b" << "\\binline\\b" << "\\bint\\b"
                     << "\\blong\\b" << "\\bnamespace\\b" << "\\boperator\\b"
@@ -147,7 +148,18 @@ Highlighter::Highlighter(QTextDocument *parent)
                     << "\\bslots\\b" << "\\bstatic\\b" << "\\bstruct\\b"
                     << "\\btemplate\\b" << "\\btypedef\\b" << "\\btypename\\b"
                     << "\\bunion\\b" << "\\bunsigned\\b" << "\\bvirtual\\b"
-                    << "\\bvoid\\b" << "\\bvolatile\\b" << "\\bbool\\b";
+                    << "\\bvoid\\b" << "\\bvolatile\\b" << "\\bbool\\b"
+                       // Java 关键字
+                    << "\\babstract\\b" << "\\bcontinue\\b" << "\\bfor\\b"
+                    << "\\bpackage\\b" << "\\bsynchronized\\b" << "\\bassert\\b"
+                    << "\\bboolean\\b" << "\\bsuper\\b" << "\\bimport\\b"
+                    << "\\bextends\\b" << "\\bimplements\\b" << "\\bthrows\\b"
+                    << "\\bthrows\\b" << "\\bvinstanceof\\b" << "\\btransient\\b"
+                    << "\\bextends\\b" << "\\bstrictfp\\b" << "\\bfinal\\b"
+                    << "\\binterface\\b" << "\\bfinally\\b" << "\\bnative\\b"
+                    << "\\bthrow\\b" << "\\bString\\b"
+                       //python 关键字
+                    << "\\band\\b";
     foreach (const QString &pattern, keywordPatterns) {
         rule.pattern = QRegularExpression(pattern);
         rule.format = keywordFormat;
