@@ -159,7 +159,15 @@ Highlighter::Highlighter(QTextDocument *parent)
                     << "\\binterface\\b" << "\\bfinally\\b" << "\\bnative\\b"
                     << "\\bthrow\\b" << "\\bString\\b"
                        //python 关键字
-                    << "\\band\\b";
+                    << "\\band\\b" << "\\bFalse\\b" << "\\bNone\\b"
+                    << "\\bTrue\\b" << "\\bas\\b" << "\\bbreak\\b"
+                    << "\\bdef\\b" << "\\bdel\\b" << "\\belif\\b"
+                    << "\\belse\\b" << "\\bexcept\\b" << "\\bfrom\\b"
+                    << "\\bglobal\\b" << "\\bif\\b" << "\\bin\\b"
+                    << "\\bis\\b" << "\\blambda\\b" << "\\bnonlocal\\b"
+                    << "\\bnot\\b" << "\\bor\\b" << "\\bpass\\b"
+                    << "\\braise\\b" << "\\breturn\\b" << "\\btry\\b"
+                    << "\\bwhile\\b" << "\\bwith\\b" << "\\byield\\b";
     foreach (const QString &pattern, keywordPatterns) {
         rule.pattern = QRegularExpression(pattern);
         rule.format = keywordFormat;
