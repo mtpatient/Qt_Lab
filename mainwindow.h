@@ -75,6 +75,8 @@ private slots:
 
     void on_action_new_window_triggered();
 
+    void on_action_history_triggered();
+
 private:
     Ui::MainWindow *ui;
 
@@ -85,5 +87,6 @@ private:
     bool textChange;
 
     bool userEditConfirmed();
+    void toHerf();
 };
 #endif // MAINWINDOW_H

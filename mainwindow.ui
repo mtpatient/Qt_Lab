@@ -58,6 +58,7 @@
     <addaction name="action_Save"/>
     <addaction name="action_A_Save"/>
     <addaction name="action_new_window"/>
+    <addaction name="action_history"/>
     <addaction name="separator"/>
     <addaction name="action_Exit"/>
    </widget>
@@ -123,6 +124,7 @@
    <addaction name="action_Save"/>
    <addaction name="action_A_Save"/>
    <addaction name="action_new_window"/>
+   <addaction name="action_history"/>
    <addaction name="separator"/>
    <addaction name="action_U"/>
    <addaction name="action_Recover"/>
@@ -380,6 +382,15 @@
    </property>
    <property name="text">
     <string>新窗口</string>
+   </property>
+  </action>
+  <action name="action_history">
+   <property name="icon">
+    <iconset resource="la2_res.qrc">
+     <normaloff>:/img/history.png</normaloff>:/img/history.png</iconset>
+   </property>
+   <property name="text">
+    <string>历史记录</string>
    </property>
   </action>
  </widget>

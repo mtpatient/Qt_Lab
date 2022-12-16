@@ -3,6 +3,8 @@
 #include "about_dialog.h"
 #include "find_dialog.h"
 #include "replace_dialog.h"
+#include "history_dialog.h"
+
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QTextStream>
@@ -188,6 +190,7 @@ void MainWindow::on_textEdit_textChanged()
             this->setWindowTitle("*" + this->windowTitle());
         }
         textChange = true;
+        toHerf();
     }
 
     statusLabel.setText("length：" + QString::number(ui->textEdit->toPlainText().length())
@@ -412,5 +415,32 @@ void MainWindow::on_action_new_window_triggered()
     qDebug() << "new Process";
 
     process->startDetached(path);
+}
+
+//支持超链接
+void MainWindow::toHerf()
+{
+    QString text = ui->textEdit->toPlainText();
+
+    if(text != ""){
+        QRegExp rx("http[s]{0,1}://[\\w.]*\\w+[/\\w+]*");
+        int pos = 0;
+        while((pos=rx.indexIn(text, pos)) != -1){
+            pos += rx.matchedLength();
+            QString result=rx.cap(0);
+
+            text.replace(result, "<a href=\""+ result +"\">" + result + "</a>");
+        }
+
+        ui->textEdit->clear();
+        ui->textEdit->appendHtml(text);
+    }
+}
+
+//历史
+void MainWindow::on_action_history_triggered()
+{
+    history_Dialog history;
+    history.exec();
 }
 

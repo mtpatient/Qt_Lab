@@ -12,6 +12,7 @@ SOURCES += \
     about_dialog.cpp \
     codeeditor.cpp \
     find_dialog.cpp \
+    history_dialog.cpp \
     main.cpp \
     mainwindow.cpp \
     replace_dialog.cpp
@@ -20,12 +21,14 @@ HEADERS += \
     about_dialog.h \
     codeeditor.h \
     find_dialog.h \
+    history_dialog.h \
     mainwindow.h \
     replace_dialog.h
 
 FORMS += \
     about_dialog.ui \
     find_dialog.ui \
+    history_dialog.ui \
     mainwindow.ui \
     replace_dialog.ui
 
