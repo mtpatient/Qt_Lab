@@ -57,8 +57,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->action_Line, SIGNAL(triggered(bool)), ui->textEdit, SLOT(hideLineNumberArea(bool)));
     InitCountMessage();
-
-    IDatabase::getInstance();
 }
 
 MainWindow::~MainWindow()
@@ -125,6 +123,7 @@ void MainWindow::on_action_Open_triggered()
     file.close();
 
     this->setWindowTitle(QFileInfo(filename).absoluteFilePath());
+    IDatabase::getInstance().addHistory(QFileInfo(filename).absoluteFilePath());
 
     textChange = false;
 }

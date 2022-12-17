@@ -34,6 +34,7 @@ public:
     bool initModel();
     bool deleteCurrent();
     bool deleteAll();
+    bool addHistory(const QString str);
 
     QSqlTableModel *TabModel; //数据模型
     QItemSelectionModel *Selection; //选择模型

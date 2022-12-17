@@ -63,6 +63,35 @@ bool IDatabase::deleteAll()
     return true;
 }
 
+bool IDatabase::addHistory(const QString str)
+{
+    QSqlQuery query;
+    query.prepare("select * from history where src = :SRC");
+    query.bindValue("SRC", str);
+    query.exec();
+
+    QString sql = "";
+    if(query.first()){
+        sql = "update history set date = strftime('%Y-%m-%d %H:%M:%S','now') where src = '" + str + "'";
+        if(query.exec(sql)){
+            qDebug() << "更改成功";
+            return true;
+        }else{
+            qDebug() << "更改失败";
+            return false;
+        }
+    }else{
+        sql = "INSERT INTO history VALUES(strftime('%Y-%m-%d %H:%M:%S','now'), '" + str + "')";
+        if(query.exec(sql)){
+            qDebug() << "插入成功";
+            return true;
+        }else{
+            qDebug() << "插入失败";
+            return false;
+        }
+    }
+}
+
 
 IDatabase::IDatabase(QObject *parent) : QObject(parent)
 {
