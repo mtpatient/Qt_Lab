@@ -14,6 +14,7 @@ history_Dialog::history_Dialog(QWidget *parent) :
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableView->setAlternatingRowColors(true);
+    ui->tableView->horizontalHeader()->setStretchLastSection(true); //所有列都扩展自适应宽度，填充充满整个屏幕宽度
 
     IDatabase &iDataBase = IDatabase::getInstance();
 

@@ -24,6 +24,9 @@ bool IDatabase::initModel()
     TabModel->setEditStrategy(QSqlTableModel::OnManualSubmit); //数据保存方式
     TabModel->setSort(TabModel->fieldIndex("date"), Qt::DescendingOrder);//排序
 
+    TabModel->setHeaderData(0, Qt::Horizontal, tr("上次打开时间"));
+    TabModel->setHeaderData(1, Qt::Horizontal, tr("文件路径"));
+
     if(!TabModel->select()){
         qDebug() << "false";
         return false;
@@ -52,9 +55,7 @@ bool IDatabase::deleteCurrent()
 
 bool IDatabase::deleteAll()
 {
-    for(auto s : Selection->selectedRows()){
-        TabModel->removeRows(s.row(), 1);
-    }
+    TabModel->removeRows(0, TabModel->rowCount());
     TabModel->submitAll();
     TabModel->select();
     qDebug() << "deleteAll";
