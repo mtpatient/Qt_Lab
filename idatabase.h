@@ -16,9 +16,6 @@ public:
         return instance;
     }
 
-    QString userLogin(QString userName, QString password);
-
-
 private:
     explicit IDatabase(QObject *parent = nullptr);
 
@@ -34,15 +31,10 @@ private:
 signals:
 
 public:
-    bool initPatientModel();
-    bool searchPatient(QString filter);
-    bool deleteCurrentPatient();
-    bool submitPatientEdit();
-    void revertPatientEdit();
-    int addNewPatient();
+    bool initModel();
 
-    QSqlTableModel *patientTabModel; //数据模型
-    QItemSelectionModel *patientSelection; //选择模型
+    QSqlTableModel *TabModel; //数据模型
+    QItemSelectionModel *Selection; //选择模型
 
 };
 

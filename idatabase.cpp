@@ -15,44 +15,45 @@ void IDatabase::initDatabase()
     }
 }
 
-bool IDatabase::initPatientModel()
+bool IDatabase::initModel()
 {
-    patientTabModel = new QSqlTableModel(this, database);
-    patientTabModel->setTable("history");
-    patientTabModel->setEditStrategy(QSqlTableModel::OnManualSubmit); //数据保存方式
-    patientTabModel->setSort(patientTabModel->fieldIndex("date"), Qt::AscendingOrder);//排序
+    TabModel = new QSqlTableModel(this, database);
+    TabModel->setTable("history");
+    TabModel->setEditStrategy(QSqlTableModel::OnManualSubmit); //数据保存方式
+    TabModel->setSort(TabModel->fieldIndex("date"), Qt::AscendingOrder);//排序
 
-    if(!(patientTabModel->select())){
+    if(!(TabModel->select())){
         return false;
     }
 
-    patientSelection = new QItemSelectionModel(patientTabModel);
+    Selection = new QItemSelectionModel(TabModel);
     return true;
 }
 
-bool IDatabase::searchPatient(QString filter)
-{
-    patientTabModel->setFilter(filter);
-    return patientTabModel->select();
-}
 
-bool IDatabase::deleteCurrentPatient()
-{
-    QModelIndex curIndex = patientSelection->currentIndex();
-    patientTabModel->removeRow(curIndex.row());
-    patientTabModel->submitAll();
-    patientTabModel->select();
-}
+//bool IDatabase::searchPatient(QString filter)
+//{
+//    patientTabModel->setFilter(filter);
+//    return patientTabModel->select();
+//}
 
-bool IDatabase::submitPatientEdit()
-{
-    return patientTabModel->submitAll();
-}
+//bool IDatabase::deleteCurrentPatient()
+//{
+//    QModelIndex curIndex = patientSelection->currentIndex();
+//    patientTabModel->removeRow(curIndex.row());
+//    patientTabModel->submitAll();
+//    patientTabModel->select();
+//}
 
-void IDatabase::revertPatientEdit()
-{
-    patientTabModel->revertAll();
-}
+//bool IDatabase::submitPatientEdit()
+//{
+//    return patientTabModel->submitAll();
+//}
+
+//void IDatabase::revertPatientEdit()
+//{
+//    patientTabModel->revertAll();
+//}
 
 IDatabase::IDatabase(QObject *parent) : QObject(parent)
 {

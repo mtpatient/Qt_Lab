@@ -148,7 +148,7 @@
   <action name="action_New">
    <property name="icon">
     <iconset resource="la2_res.qrc">
-     <normaloff>:/img/新建.png</normaloff>:/img/新建.png</iconset>
+     <normaloff>:/img/new.png</normaloff>:/img/new.png</iconset>
    </property>
    <property name="text">
     <string>新建(&amp;N)</string>
@@ -160,7 +160,7 @@
   <action name="action_Open">
    <property name="icon">
     <iconset resource="la2_res.qrc">
-     <normaloff>:/img/打开.png</normaloff>:/img/打开.png</iconset>
+     <normaloff>:/img/folder-open.png</normaloff>:/img/folder-open.png</iconset>
    </property>
    <property name="text">
     <string>打开(&amp;O)</string>
@@ -172,7 +172,7 @@
   <action name="action_Save">
    <property name="icon">
     <iconset resource="la2_res.qrc">
-     <normaloff>:/img/保存.png</normaloff>:/img/保存.png</iconset>
+     <normaloff>:/img/save.png</normaloff>:/img/save.png</iconset>
    </property>
    <property name="text">
     <string>保存(&amp;S)</string>
@@ -184,13 +184,17 @@
   <action name="action_A_Save">
    <property name="icon">
     <iconset resource="la2_res.qrc">
-     <normaloff>:/img/另存为.png</normaloff>:/img/另存为.png</iconset>
+     <normaloff>:/img/SAVE_AS.png</normaloff>:/img/SAVE_AS.png</iconset>
    </property>
    <property name="text">
     <string>另存为(&amp;A)</string>
    </property>
   </action>
   <action name="action_Exit">
+   <property name="icon">
+    <iconset resource="la2_res.qrc">
+     <normaloff>:/img/exit.png</normaloff>:/img/exit.png</iconset>
+   </property>
    <property name="text">
     <string>退出(X)</string>
    </property>
@@ -198,7 +202,7 @@
   <action name="action_U">
    <property name="icon">
     <iconset resource="la2_res.qrc">
-     <normaloff>:/img/撤销.png</normaloff>:/img/撤销.png</iconset>
+     <normaloff>:/img/undo.png</normaloff>:/img/undo.png</iconset>
    </property>
    <property name="text">
     <string>撤销(&amp;U)</string>
@@ -210,7 +214,7 @@
   <action name="action_Recover">
    <property name="icon">
     <iconset resource="la2_res.qrc">
-     <normaloff>:/img/恢复.png</normaloff>:/img/恢复.png</iconset>
+     <normaloff>:/img/redo.png</normaloff>:/img/redo.png</iconset>
    </property>
    <property name="text">
     <string>恢复()</string>
@@ -222,7 +226,7 @@
   <action name="action_Cut">
    <property name="icon">
     <iconset resource="la2_res.qrc">
-     <normaloff>:/img/剪切.png</normaloff>:/img/剪切.png</iconset>
+     <normaloff>:/img/cut.png</normaloff>:/img/cut.png</iconset>
    </property>
    <property name="text">
     <string>剪切(&amp;T)</string>
@@ -234,7 +238,7 @@
   <action name="action_Copy">
    <property name="icon">
     <iconset resource="la2_res.qrc">
-     <normaloff>:/img/复制.png</normaloff>:/img/复制.png</iconset>
+     <normaloff>:/img/copy.png</normaloff>:/img/copy.png</iconset>
    </property>
    <property name="text">
     <string>复制(&amp;C)</string>
@@ -246,7 +250,7 @@
   <action name="action_Paste">
    <property name="icon">
     <iconset resource="la2_res.qrc">
-     <normaloff>:/img/粘贴.png</normaloff>:/img/粘贴.png</iconset>
+     <normaloff>:/img/paste.png</normaloff>:/img/paste.png</iconset>
    </property>
    <property name="text">
     <string>粘贴(&amp;P)</string>
@@ -258,7 +262,7 @@
   <action name="action_Find">
    <property name="icon">
     <iconset resource="la2_res.qrc">
-     <normaloff>:/img/查找.png</normaloff>:/img/查找.png</iconset>
+     <normaloff>:/img/find.png</normaloff>:/img/find.png</iconset>
    </property>
    <property name="text">
     <string>查找(&amp;F)</string>
@@ -270,7 +274,7 @@
   <action name="action_Replace">
    <property name="icon">
     <iconset resource="la2_res.qrc">
-     <normaloff>:/img/替换.png</normaloff>:/img/替换.png</iconset>
+     <normaloff>:/img/replace.png</normaloff>:/img/replace.png</iconset>
    </property>
    <property name="text">
     <string>替换(&amp;R)</string>
@@ -293,7 +297,7 @@
    </property>
    <property name="icon">
     <iconset resource="la2_res.qrc">
-     <normaloff>:/img/自动换行.png</normaloff>:/img/自动换行.png</iconset>
+     <normaloff>:/img/wrap.png</normaloff>:/img/wrap.png</iconset>
    </property>
    <property name="text">
     <string>自动换行(&amp;W)</string>
@@ -305,7 +309,7 @@
    </property>
    <property name="icon">
     <iconset resource="la2_res.qrc">
-     <normaloff>:/img/显示行号.png</normaloff>:/img/显示行号.png</iconset>
+     <normaloff>:/img/line.png</normaloff>:/img/line.png</iconset>
    </property>
    <property name="text">
     <string>显示行号(&amp;L)</string>
@@ -317,7 +321,7 @@
   <action name="action_Font">
    <property name="icon">
     <iconset resource="la2_res.qrc">
-     <normaloff>:/img/字体大小.png</normaloff>:/img/字体大小.png</iconset>
+     <normaloff>:/img/font.png</normaloff>:/img/font.png</iconset>
    </property>
    <property name="text">
     <string>字体(&amp;F)</string>
@@ -326,13 +330,17 @@
   <action name="action_Font_Color">
    <property name="icon">
     <iconset resource="la2_res.qrc">
-     <normaloff>:/img/字体颜色.png</normaloff>:/img/字体颜色.png</iconset>
+     <normaloff>:/img/font-colors.png</normaloff>:/img/font-colors.png</iconset>
    </property>
    <property name="text">
     <string>字体颜色</string>
    </property>
   </action>
   <action name="action_Font_Background_Color">
+   <property name="icon">
+    <iconset resource="la2_res.qrc">
+     <normaloff>:/img/font background.png</normaloff>:/img/font background.png</iconset>
+   </property>
    <property name="text">
     <string>字体背景色</string>
    </property>
@@ -348,7 +356,7 @@
    </property>
    <property name="icon">
     <iconset resource="la2_res.qrc">
-     <normaloff>:/img/工具栏.png</normaloff>:/img/工具栏.png</iconset>
+     <normaloff>:/img/tools-hardware.png</normaloff>:/img/tools-hardware.png</iconset>
    </property>
    <property name="text">
     <string>工具栏(&amp;T)</string>
@@ -360,7 +368,7 @@
    </property>
    <property name="icon">
     <iconset resource="la2_res.qrc">
-     <normaloff>:/img/状态.png</normaloff>:/img/状态.png</iconset>
+     <normaloff>:/img/state.png</normaloff>:/img/state.png</iconset>
    </property>
    <property name="text">
     <string>状态栏(&amp;S)</string>
@@ -369,7 +377,7 @@
   <action name="action_About">
    <property name="icon">
     <iconset resource="la2_res.qrc">
-     <normaloff>:/img/关于 (1).png</normaloff>:/img/关于 (1).png</iconset>
+     <normaloff>:/img/about.png</normaloff>:/img/about.png</iconset>
    </property>
    <property name="text">
     <string>关于(&amp;A)</string>

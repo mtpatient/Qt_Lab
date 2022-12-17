@@ -2,26 +2,26 @@
     <qresource prefix="/">
         <file>img/new_Window.png</file>
         <file>img/history.png</file>
-        <file>img/保存.png</file>
-        <file>img/编辑器.png</file>
-        <file>img/查找.png</file>
-        <file>img/撤销.png</file>
-        <file>img/打开.png</file>
-        <file>img/复制.png</file>
-        <file>img/富文本编辑器_字体.png</file>
-        <file>img/工具栏.png</file>
-        <file>img/关于 (1).png</file>
-        <file>img/关于.png</file>
-        <file>img/恢复.png</file>
-        <file>img/剪切.png</file>
-        <file>img/另存为.png</file>
-        <file>img/替换.png</file>
-        <file>img/显示行号.png</file>
-        <file>img/新建.png</file>
-        <file>img/粘贴.png</file>
-        <file>img/状态.png</file>
-        <file>img/自动换行.png</file>
-        <file>img/字体大小.png</file>
-        <file>img/字体颜色.png</file>
+        <file>img/about.png</file>
+        <file>img/background.png</file>
+        <file>img/copy.png</file>
+        <file>img/cut.png</file>
+        <file>img/exit.png</file>
+        <file>img/find.png</file>
+        <file>img/folder-open.png</file>
+        <file>img/font background.png</file>
+        <file>img/font.png</file>
+        <file>img/font-colors.png</file>
+        <file>img/line.png</file>
+        <file>img/new.png</file>
+        <file>img/paste.png</file>
+        <file>img/redo.png</file>
+        <file>img/replace.png</file>
+        <file>img/save.png</file>
+        <file>img/SAVE_AS.png</file>
+        <file>img/state.png</file>
+        <file>img/tools-hardware.png</file>
+        <file>img/undo.png</file>
+        <file>img/wrap.png</file>
     </qresource>
 </RCC>
