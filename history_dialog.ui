@@ -13,9 +13,14 @@
   <property name="windowTitle">
    <string>历史记录</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normalon>:/img/history.png</normalon>
+   </iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QListView" name="listView"/>
+    <widget class="QTableView" name="tableView"/>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">

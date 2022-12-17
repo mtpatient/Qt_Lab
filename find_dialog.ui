@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normalon>:/img/查找.png</normalon>
+    <normalon>:/img/find.png</normalon>
    </iconset>
   </property>
   <widget class="QPushButton" name="btnnext">

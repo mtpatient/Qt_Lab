@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normalon>:/img/编辑器.png</normalon>
+    <normalon>:/img/Editor.png</normalon>
    </iconset>
   </property>
   <widget class="QWidget" name="centralwidget">

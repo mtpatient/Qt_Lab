@@ -4,6 +4,7 @@
 #include "find_dialog.h"
 #include "replace_dialog.h"
 #include "history_dialog.h"
+#include "idatabase.h"
 
 #include <QFileDialog>
 #include <QMessageBox>
@@ -56,6 +57,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->action_Line, SIGNAL(triggered(bool)), ui->textEdit, SLOT(hideLineNumberArea(bool)));
     InitCountMessage();
+
+    IDatabase::getInstance();
 }
 
 MainWindow::~MainWindow()

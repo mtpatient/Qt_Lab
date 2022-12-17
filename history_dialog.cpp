@@ -10,16 +10,17 @@ history_Dialog::history_Dialog(QWidget *parent) :
     setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
     ui->setupUi(this);
 
-    ui->listView->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->listView->setSelectionMode(QAbstractItemView::SingleSelection);
-    ui->listView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->listView->setAlternatingRowColors(true);
+    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableView->setAlternatingRowColors(true);
 
     IDatabase &iDataBase = IDatabase::getInstance();
 
     if(iDataBase.initModel()){
-        ui->listView->setModel(iDataBase.TabModel);
-        ui->listView->setSelectionModel(iDataBase.Selection);
+        ui->tableView->setModel(iDataBase.TabModel);
+        ui->tableView->setSelectionModel(iDataBase.Selection);
+        qDebug() << "tableView";
     }
 }
 
@@ -27,3 +28,22 @@ history_Dialog::~history_Dialog()
 {
     delete ui;
 }
+
+//删除
+void history_Dialog::on_pushButton_2_clicked()
+{
+    IDatabase::getInstance().deleteCurrent();
+}
+
+//删除全部
+void history_Dialog::on_pushButton_3_clicked()
+{
+    IDatabase::getInstance().deleteAll();
+}
+
+//打开历史文件
+void history_Dialog::on_pushButton_clicked()
+{
+
+}
+

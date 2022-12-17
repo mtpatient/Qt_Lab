@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normalon>:/img/关于.png</normalon>
+    <normalon>:/img/about.png</normalon>
    </iconset>
   </property>
   <widget class="QLabel" name="label">
@@ -73,7 +73,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-image:url(:/img/富文本编辑器_字体.png)</string>
+    <string notr="true">border-image:url(:/img/Editor.png)</string>
    </property>
    <property name="text">
     <string/>

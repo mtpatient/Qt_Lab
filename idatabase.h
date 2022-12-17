@@ -32,6 +32,8 @@ signals:
 
 public:
     bool initModel();
+    bool deleteCurrent();
+    bool deleteAll();
 
     QSqlTableModel *TabModel; //数据模型
     QItemSelectionModel *Selection; //选择模型

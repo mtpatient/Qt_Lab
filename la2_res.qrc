@@ -23,5 +23,6 @@
         <file>img/tools-hardware.png</file>
         <file>img/undo.png</file>
         <file>img/wrap.png</file>
+        <file>img/Editor.png</file>
     </qresource>
 </RCC>

@@ -6,6 +6,8 @@ void IDatabase::initDatabase()
     database = QSqlDatabase::addDatabase("QSQLITE"); //添加 SQL LITE数据库驱动
     QString aFile = "Labdb.db";
     database.setDatabaseName(aFile); //设置数据库名称
+    database.setUserName("root");
+    database.setPassword("123456");
 
     if (!database.open())   //打开数据库
     {
@@ -20,40 +22,46 @@ bool IDatabase::initModel()
     TabModel = new QSqlTableModel(this, database);
     TabModel->setTable("history");
     TabModel->setEditStrategy(QSqlTableModel::OnManualSubmit); //数据保存方式
-    TabModel->setSort(TabModel->fieldIndex("date"), Qt::AscendingOrder);//排序
+    TabModel->setSort(TabModel->fieldIndex("date"), Qt::DescendingOrder);//排序
 
-    if(!(TabModel->select())){
+    if(!TabModel->select()){
+        qDebug() << "false";
         return false;
     }
 
+    qDebug() << "init";
     Selection = new QItemSelectionModel(TabModel);
     return true;
 }
 
 
-//bool IDatabase::searchPatient(QString filter)
-//{
-//    patientTabModel->setFilter(filter);
-//    return patientTabModel->select();
-//}
+bool IDatabase::deleteCurrent()
+{
+    QModelIndex curIndex = Selection->currentIndex();
+    qDebug() << curIndex.row();
+    if(TabModel->removeRows(curIndex.row(), 1)){
+        TabModel->submitAll();
+        TabModel->select();
+        qDebug() << "deleteCurrent";
+    }else{
+        qDebug() << "删除失败";
+    }
 
-//bool IDatabase::deleteCurrentPatient()
-//{
-//    QModelIndex curIndex = patientSelection->currentIndex();
-//    patientTabModel->removeRow(curIndex.row());
-//    patientTabModel->submitAll();
-//    patientTabModel->select();
-//}
+    return true;
+}
 
-//bool IDatabase::submitPatientEdit()
-//{
-//    return patientTabModel->submitAll();
-//}
+bool IDatabase::deleteAll()
+{
+    for(auto s : Selection->selectedRows()){
+        TabModel->removeRows(s.row(), 1);
+    }
+    TabModel->submitAll();
+    TabModel->select();
+    qDebug() << "deleteAll";
 
-//void IDatabase::revertPatientEdit()
-//{
-//    patientTabModel->revertAll();
-//}
+    return true;
+}
+
 
 IDatabase::IDatabase(QObject *parent) : QObject(parent)
 {
