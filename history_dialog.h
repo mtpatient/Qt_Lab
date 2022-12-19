@@ -22,6 +22,9 @@ private slots:
 
     void on_pushButton_clicked();
 
+signals:
+    void sendSrc(QString src);
+
 private:
     Ui::history_Dialog *ui;
 };

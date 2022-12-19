@@ -41,21 +41,22 @@ MainWindow::MainWindow(QWidget *parent)
     ui->action_U->setEnabled(false);
     ui->action_Paste->setEnabled(false);
 
-    QPlainTextEdit::LineWrapMode mode = ui->textEdit->lineWrapMode();
+//    QPlainTextEdit::LineWrapMode mode = ui->textEdit->lineWrapMode();
 
-    if(mode == QTextEdit::NoWrap){
-        ui->textEdit->setLineWrapMode(QPlainTextEdit::WidgetWidth);
-        ui->action_Wrap->setChecked(false);
-    } else{
-        ui->textEdit->setLineWrapMode(QPlainTextEdit::NoWrap);
-        ui->action_Wrap->setChecked(true);
-    }
+//    if(mode == QTextEdit::NoWrap){
+//        ui->textEdit->setLineWrapMode(QPlainTextEdit::WidgetWidth);
+//        ui->action_Wrap->setChecked(false);
+//    } else{
+//        ui->textEdit->setLineWrapMode(QPlainTextEdit::NoWrap);
+//        ui->action_Wrap->setChecked(true);
+//    }
 
     ui->action_State->setChecked(true);
     ui->action_Tool->setChecked(true);
     ui->action_Line->setChecked(true);
 
     connect(ui->action_Line, SIGNAL(triggered(bool)), ui->textEdit, SLOT(hideLineNumberArea(bool)));
+
     InitCountMessage();
 }
 
@@ -157,6 +158,7 @@ void MainWindow::on_action_Save_triggered()
     file.close();
 
     this->setWindowTitle(QFileInfo(filePath).absoluteFilePath());
+    IDatabase::getInstance().addHistory(QFileInfo(filePath).absoluteFilePath());
 
     textChange = false;
 }
@@ -181,6 +183,7 @@ void MainWindow::on_action_A_Save_triggered()
     file.close();
 
     this->setWindowTitle(QFileInfo(filePath).absoluteFilePath());
+    IDatabase::getInstance().addHistory(QFileInfo(filePath).absoluteFilePath());
     qDebug() << QString("保存成功");
 }
 
@@ -192,7 +195,6 @@ void MainWindow::on_textEdit_textChanged()
             this->setWindowTitle("*" + this->windowTitle());
         }
         textChange = true;
-        toHerf();
     }
 
     statusLabel.setText("length：" + QString::number(ui->textEdit->toPlainText().length())
@@ -419,30 +421,55 @@ void MainWindow::on_action_new_window_triggered()
     process->startDetached(path);
 }
 
-//支持超链接
-void MainWindow::toHerf()
-{
-    QString text = ui->textEdit->toPlainText();
+////支持超链接
+//void MainWindow::toHerf()
+//{
+//    QString text = ui->textEdit->toPlainText();
 
-    if(text != ""){
-        QRegExp rx("http[s]{0,1}://[\\w.]*\\w+[/\\w+]*");
-        int pos = 0;
-        while((pos=rx.indexIn(text, pos)) != -1){
-            pos += rx.matchedLength();
-            QString result=rx.cap(0);
+//    if(text != ""){
+//        QRegExp rx("http[s]{0,1}://[\\w.]*\\w+[/\\w+]*");
+//        int pos = 0;
+//        while((pos=rx.indexIn(text, pos)) != -1){
+//            pos += rx.matchedLength();
+//            QString result=rx.cap(0);
 
-            text.replace(result, "<a href=\""+ result +"\">" + result + "</a>");
-        }
+//            text.replace(result, "<a href=\""+ result +"\">" + result + "</a>");
+//        }
 
-        ui->textEdit->clear();
-        ui->textEdit->appendHtml(text);
-    }
-}
+//        ui->textEdit->clear();
+//        ui->textEdit->appendHtml(text);
+//    }
+//}
 
-//历史
+//历史记录
 void MainWindow::on_action_history_triggered()
 {
-    history_Dialog history;
-    history.exec();
+    h = new history_Dialog();
+    connect(h, SIGNAL(sendSrc(QString)), this, SLOT(openHistoryFile(QString)));
+    h->show();
+}
+
+// 打开历史记录文件
+void MainWindow::openHistoryFile(QString src)
+{
+    delete  h;
+    if(!userEditConfirmed()){
+        return ;
+    }
+
+    QString filename = src;
+    QFile file(filename);
+    file.open(QIODevice::Truncate | QIODevice::ReadOnly);
+
+    filePath = filename;
+    QTextStream in(&file);
+    QString text = in.readAll();
+    ui->textEdit->insertPlainText(text);
+    file.close();
+
+    this->setWindowTitle(QFileInfo(filename).absoluteFilePath());
+    IDatabase::getInstance().addHistory(QFileInfo(filename).absoluteFilePath());
+
+    textChange = false;
 }
 

@@ -45,6 +45,8 @@ void history_Dialog::on_pushButton_3_clicked()
 //打开历史文件
 void history_Dialog::on_pushButton_clicked()
 {
-
+    QString src = IDatabase::getInstance().returnHistroy();
+    qDebug() << src;
+    emit sendSrc(src);
 }
 

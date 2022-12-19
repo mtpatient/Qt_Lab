@@ -66,12 +66,10 @@ bool IDatabase::deleteAll()
 bool IDatabase::addHistory(const QString str)
 {
     QSqlQuery query;
-    query.prepare("select * from history where src = :SRC");
-    query.bindValue("SRC", str);
-    query.exec();
+    query.exec("select * from history where src = '" + str + "'");
 
     QString sql = "";
-    if(query.first()){
+    if(query.next()){
         sql = "update history set date = strftime('%Y-%m-%d %H:%M:%S','now') where src = '" + str + "'";
         if(query.exec(sql)){
             qDebug() << "更改成功";
@@ -81,6 +79,7 @@ bool IDatabase::addHistory(const QString str)
             return false;
         }
     }else{
+        qDebug() << query.lastError();
         sql = "INSERT INTO history VALUES(strftime('%Y-%m-%d %H:%M:%S','now'), '" + str + "')";
         if(query.exec(sql)){
             qDebug() << "插入成功";
@@ -90,6 +89,13 @@ bool IDatabase::addHistory(const QString str)
             return false;
         }
     }
+}
+
+QString IDatabase::returnHistroy()
+{
+    QModelIndex curIndex = Selection->currentIndex();
+    QString res = TabModel->data(TabModel->index(curIndex.row(), 1)).toString();
+    return res;
 }
 
 

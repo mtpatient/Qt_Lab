@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QLabel>
 #include <QTimer>
+#include "history_dialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -77,6 +78,8 @@ private slots:
 
     void on_action_history_triggered();
 
+    void openHistoryFile(QString src);
+
 private:
     Ui::MainWindow *ui;
 
@@ -85,6 +88,7 @@ private:
 
     QString filePath;
     bool textChange;
+    history_Dialog *h;
 
     bool userEditConfirmed();
     void toHerf();
