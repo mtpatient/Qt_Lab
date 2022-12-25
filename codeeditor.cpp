@@ -2,6 +2,8 @@
 #include <QPainter>
 #include <QTextBlock>
 #include <QTimer>
+#include <QDesktopServices>
+#include <QDebug>
 
 /**
  * @brief CodeEditor::CodeEditor 实现显示行号及当前行高亮、语法高亮
@@ -81,6 +83,50 @@ void CodeEditor::resizeEvent(QResizeEvent *e)
 
     QRect cr = contentsRect();
     lineNumberArea->setGeometry(QRect(cr.left(), cr.top(), lineNumberAreaWidth(), cr.height()));
+}
+
+//处理点击事件
+void CodeEditor::mousePressEvent(QMouseEvent *event)
+{
+    QPlainTextEdit::mousePressEvent(event);
+
+    if (event->button() == Qt::LeftButton) {
+        qDebug() << "左键";
+        int col = 0;
+        int row = 0;
+        int flag = -1;
+        int pos = this->textCursor().position();
+        QString text = this->toPlainText();
+
+        for(int i = 0;i < pos;i++){
+            if(text[i] == '\n'){
+                row++;
+                flag = i;
+            }
+        }
+        flag++;
+        col = pos - flag;
+        int curPos = col+1;
+
+        QTextCursor cursor = cursorForPosition(event->pos());
+        QTextBlock block = cursor.block();
+        QString textBlock = block.text();
+        int l,r;
+        l = col,r = col;
+        while(textBlock[l] != " " && l > 0){
+            l--;
+        }
+        while(textBlock[r] != " " && r < textBlock.length()){
+            r++;
+        }
+        QString href = textBlock.mid(l,r-l).trimmed();
+        qDebug() << href;
+
+        if (href.startsWith("http://") || href.startsWith("https://")) {
+            qDebug() << "超链接";
+            QDesktopServices::openUrl(href);
+        }
+    }
 }
 
 void CodeEditor::highlightCurrentLine()
@@ -198,6 +244,13 @@ Highlighter::Highlighter(QTextDocument *parent)
 
     multiLineCommentFormat.setForeground(Qt::red);
 
+    hyperHerfFormat.setForeground(Qt::blue);
+    hyperHerfFormat.setFontUnderline(true);
+    hyperHerfFormat.setAnchor(true);
+    rule.pattern = QRegularExpression("(?<=\\s|^)((?:https?://|www\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,4}/)(?:[^\\s()<>]+|\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\))+(?:\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\)|[^\\s`!()\\[\\]{};:'\".,<>?«»“”‘’]))(?=\\s|$)");
+    rule.format = hyperHerfFormat;
+    highlightingRules.append(rule);
+
     commentStartExpression = QRegularExpression("/\\*");
     commentEndExpression = QRegularExpression("\\*/");
 }
@@ -234,3 +287,4 @@ void Highlighter::highlightBlock(const QString &text)
         startIndex = text.indexOf(commentStartExpression, startIndex + commentLength);
     }
 }
+

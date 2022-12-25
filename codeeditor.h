@@ -5,6 +5,12 @@
 #include <QPlainTextEdit>
 #include <QSyntaxHighlighter>
 #include <QRegularExpression>
+#include <QApplication>
+#include <QTextCursor>
+#include <QTextCharFormat>
+#include <QTextBlockFormat>
+#include <QPlainTextEdit>
+#include <QUrl>
 
 class Highlighter : public QSyntaxHighlighter
 {
@@ -33,6 +39,7 @@ private:
     QTextCharFormat multiLineCommentFormat;
     QTextCharFormat quotationFormat;
     QTextCharFormat functionFormat;
+    QTextCharFormat hyperHerfFormat;
 };
 
 class CodeEditor : public QPlainTextEdit
@@ -47,6 +54,7 @@ public:
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
+    void mousePressEvent(QMouseEvent *event) override;
 
 private slots:
     void updateLineNumberAreaWidth(int newBlockCount);

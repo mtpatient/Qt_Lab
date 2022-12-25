@@ -15,6 +15,15 @@
 #include <QDebug>
 #include <QProcess>
 
+#include <QApplication>
+#include <QPlainTextEdit>
+#include <QTextCursor>
+#include <QTextCharFormat>
+#include <QTextBlock>
+#include <QTextFragment>
+#include <QDesktopServices>
+#include <QUrl>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -41,19 +50,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->action_U->setEnabled(false);
     ui->action_Paste->setEnabled(false);
 
-//    QPlainTextEdit::LineWrapMode mode = ui->textEdit->lineWrapMode();
-
-//    if(mode == QTextEdit::NoWrap){
-//        ui->textEdit->setLineWrapMode(QPlainTextEdit::WidgetWidth);
-//        ui->action_Wrap->setChecked(false);
-//    } else{
-//        ui->textEdit->setLineWrapMode(QPlainTextEdit::NoWrap);
-//        ui->action_Wrap->setChecked(true);
-//    }
-
     ui->action_State->setChecked(true);
     ui->action_Tool->setChecked(true);
     ui->action_Line->setChecked(true);
+
 
     connect(ui->action_Line, SIGNAL(triggered(bool)), ui->textEdit, SLOT(hideLineNumberArea(bool)));
 
@@ -195,6 +195,7 @@ void MainWindow::on_textEdit_textChanged()
             this->setWindowTitle("*" + this->windowTitle());
         }
         textChange = true;
+        //toHerf();
     }
 
     statusLabel.setText("length：" + QString::number(ui->textEdit->toPlainText().length())
@@ -308,7 +309,7 @@ void MainWindow::on_action_Wrap_triggered()
 {
     QPlainTextEdit::LineWrapMode mode = ui->textEdit->lineWrapMode();
 
-    if(mode == QTextEdit::NoWrap){
+    if(mode == QPlainTextEdit::NoWrap){
         ui->textEdit->setLineWrapMode(QPlainTextEdit::WidgetWidth);
         ui->action_Wrap->setChecked(true);
     } else{
@@ -427,6 +428,7 @@ void MainWindow::on_action_new_window_triggered()
 //    QString text = ui->textEdit->toPlainText();
 
 //    if(text != ""){
+//        qDebug() << "超链接";
 //        QRegExp rx("http[s]{0,1}://[\\w.]*\\w+[/\\w+]*");
 //        int pos = 0;
 //        while((pos=rx.indexIn(text, pos)) != -1){
@@ -437,7 +439,7 @@ void MainWindow::on_action_new_window_triggered()
 //        }
 
 //        ui->textEdit->clear();
-//        ui->textEdit->appendHtml(text);
+//        ui->textEdit->insertPlainText(text);
 //    }
 //}
 
@@ -457,6 +459,7 @@ void MainWindow::openHistoryFile(QString src)
         return ;
     }
 
+    ui->textEdit->clear();
     QString filename = src;
     QFile file(filename);
     file.open(QIODevice::Truncate | QIODevice::ReadOnly);
